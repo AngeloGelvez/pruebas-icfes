@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Registro</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #b3cc57, #ab3e5b);
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .container-wrapper {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            max-width: 1200px;
+            background-color: #ecf081;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .image-side {
+            flex: 1;
+            background-image: url('https://images.pexels.com/photos/45717/pexels-photo-45717.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .form-side {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #b3cc57;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            color: #323232;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-side label {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+            color: #323232;
+        }
+
+        .form-side input[type="text"] {
+            padding: 12px;
+            width: 80%;
+            max-width: 350px;
+            border: none;
+            border-radius: 30px;
+            outline: none;
+            margin-bottom: 20px;
+            font-size: 16px;
+            text-align: center;
+            background-color: #ffbe40;
+            color: #323232;
+        }
+
+        .form-side input[type="number"] {
+            padding: 12px;
+            width: 80%;
+            max-width: 350px;
+            border: none;
+            border-radius: 30px;
+            outline: none;
+            margin-bottom: 20px;
+            font-size: 16px;
+            text-align: center;
+            background-color: #ffbe40;
+            color: #323232;
+        }
+
+        .form-side button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            background-color: #ab3e5b;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-side button:hover {
+            background-color: #ffbe40;
+            color: #323232;
+        }
+
+        .form-side button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-wrapper">
+    <div class="image-side"></div>
+
+    <div class="form-side">
+        <div class="header">
+            <h1>Bienvenido 👋</h1>
+            <p>INGRESA TUS DATOS</p>
+        </div>
+
+        <form th:action="@{/estudiante/login}" method="post">
+            <label for="registro">Número de Registro</label>
+            <input type="text" id="registro" placeholder="" name="numeroRegistro">
+
+            <label for="registro2">Número de documento del estudiante</label>
+            <input type="number" id="registro2" placeholder="">
+            <br>
+            <button>BUSCAR</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

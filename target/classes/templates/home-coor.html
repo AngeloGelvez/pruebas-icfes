@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador - UTS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: #323232;
+            text-align: center;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #b3cc57;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: #323232;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffbe40;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 30px 0 10px;
+            color: #046c4e;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            margin: 40px auto;
+            background-color: #f0fff5;
+            border-radius: 20px;
+            width: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 20px;
+        }
+
+        .option button {
+            background-color: transparent;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .option img {
+            width: 80px;
+            margin-bottom: 10px;
+        }
+
+        .option span {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .option button:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        /* Imagen decorativa de fondo */
+        .background-image {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: url('https://images.pexels.com/photos/4474033/pexels-photo-4474033.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2; /* Opacidad suave para no distraer */
+            z-index: -1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                width: 90%;
+            }
+
+            .option {
+                margin-bottom: 20px;
+            }
+
+            .background-image {
+                width: 100%;
+                height: 50%;
+                top: auto;
+                bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Salir</a>
+    </nav>
+</header>
+
+<main>
+    <h1>Bienvenido Coordinador,</h1>
+    <p>¿Qué registros desea administrar?</p>
+
+    <div class="container">
+        <div class="option">
+            <form th:action="@{/coordinacion/examen}">
+
+
+                <div class="bg-body-tertiary p-5 rounded">
+                    <h1>Consulta los examenes</h1>
+                    <p class="lead">Este componente, puedes consutlar todos los examenes de todos los estudiantes, como también puedes ingresar y modificarlos.</p>
+                    <button>
+                        <span>Examén</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="option">
+            <form th:action="@{/coordinacion/estudiante}">
+                <div class="bg-body-tertiary p-5 rounded">
+                    <h1>Consulta los estudiantes</h1>
+                    <p class="lead">Este componente, puedes consutlar todos los estudiantes junto con su información, como también puedes ingresar y modificarlos.</p>
+                    <button>
+                        <span>Estudiantes</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<div class="background-image"></div>
+</body>
+</html>
+

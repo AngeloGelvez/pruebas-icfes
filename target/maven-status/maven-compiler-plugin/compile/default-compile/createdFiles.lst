@@ -1,0 +1,10 @@
+com\proadmin\icfes\Entities\Estudiante.class
+com\proadmin\icfes\Controller\CoordinacionController.class
+com\proadmin\icfes\Repositories\PruebaRepository.class
+com\proadmin\icfes\Entities\Coordinacion.class
+com\proadmin\icfes\Controller\EstudianteController.class
+com\proadmin\icfes\Controller\HomeController.class
+com\proadmin\icfes\Repositories\CoordinadorRepository.class
+com\proadmin\icfes\Repositories\EstudianteRepository.class
+com\proadmin\icfes\Entities\Prueba.class
+com\proadmin\icfes\IcfesApplication.class

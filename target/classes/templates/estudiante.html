@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puntaje Estudiante</title>
+    <style>
+        /* Estilos globales */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Barra de navegación */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #001f3f;
+            color: white;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #7ed957;
+        }
+
+        /* Contenedor principal */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .section, .resumen {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Sección de puntaje */
+        .puntaje {
+            text-align: center;
+            background-color: #001f3f;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+        }
+
+        .estudiante-info {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .estudiante-info h1 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .status {
+            background-color: #7ed957;
+            padding: 8px 16px;
+            border-radius: 4px;
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        .módulos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .módulo {
+            background-color: #7ed957;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Resumen de niveles */
+        .resumen h1 {
+            font-size: 1.6rem;
+            color: #333;
+        }
+
+        .nivel-general {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #001f3f;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .niveles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .nivel {
+            background-color: #001f3f;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Barra de navegación -->
+<header>
+    <div class="logo">
+        <img src="https://www.uts.edu.co/sitio/wp-content/uploads/2019/10/Logo-UTS-1.png" alt="Logo UTS">
+    </div>
+    <nav>
+        <a th:href="@{/coordinador}">Inicio</a>
+        <a href="#">Salir</a>
+    </nav>
+</header>
+
+<!-- Contenedor principal -->
+<div class="container">
+    <!-- Sección de puntaje -->
+    <div class="section">
+        <div class="puntaje">
+            <p>PUNTAJE GENERAL</p>
+            <p>[[ ${puntajeTotal} ]]</p>
+        </div>
+
+        <div class="estudiante-info" th:each="est:${estudiante}">
+            <h1>[[ ${est.primerNombre} ]] [[ ${est.segundoNombre} ]] [[ ${est.primerApellido} ]] [[ ${est.segundoApellido} ]]</h1>
+            <div class="status">APROBADO</div>
+
+            <div class="módulos" th:each="estu:${prueba}">
+                <div class="módulo">COMUNICACIÓN ESCRITA<br>[[ ${estu.puntajeComunicacionEscrita} ]]</div>
+                <div class="módulo">RAZONAMIENTO CUANTITATIVO<br>[[ ${estu.puntajeRazonamientoCuantitativo} ]]</div>
+                <div class="módulo">LECTURA CRÍTICA<br>[[ ${estu.puntajeLecturaEscrita} ]]</div>
+                <div class="módulo">COMPETENCIAS CIUDADANAS<br>[[ ${estu.puntajeCompetenciasCiudadanas} ]]</div>
+                <div class="módulo">FORMULACIÓN DE PROYECTOS<br>[[ ${estu.puntajeFPI} ]]</div>
+                <div class="módulo">PENSAMIENTO CIENTÍFICO<br>[[ ${estu.puntajePCME} ]]</div>
+                <div class="módulo">DISEÑO DE SOFTWARE<br>[[ ${estu.puntajeDDS} ]]</div>
+                <div class="módulo">INGLÉS<br>[[ ${estu.puntajeIngles} ]]</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resumen de niveles -->
+    <div class="resumen">
+        <h1>RESUMEN NIVELES</h1>
+        <div class="nivel-general">
+            <span th:if="${puntajeTotal >= 191 && puntajeTotal <= 300}" th:text="'Nivel 4'"></span>
+            <span th:if="${puntajeTotal >= 156 && puntajeTotal <= 190}" th:text="'Nivel 3'"></span>
+            <span th:if="${puntajeTotal >= 126 && puntajeTotal <= 155}" th:text="'Nivel 2'"></span>
+            <span th:if="${puntajeTotal < 125}" th:text="'Nivel 1'"></span>
+        </div>
+
+        <div>
+            <div class="nivel">COMUNICACION ESCRITA<br>
+                <span th:if="${prueba.puntajeComunicacionEscrita >= 191 && prueba.puntajeComunicacionEscrital <= 300}" th:text="'Nivel 4'"></span>
+                <span th:if="${prueba.puntajeComunicacionEscrita >= 156 && prueba.puntajeComunicacionEscrita <= 190}" th:text="'Nivel 3'"></span>
+                <span th:if="${prueba.puntajeComunicacionEscrita >= 126 && prueba.puntajeComunicacionEscrita <= 155}" th:text="'Nivel 2'"></span>
+                <span th:if="${prueba.puntajeComunicacionEscrita < 125}" th:text="'Nivel 1'"></span>
+            </div>
+            <br>
+            <div class="nivel">RAZONAMIENTO CUANTITATIVO<br>
+                <span th:if="${prueba.puntajeRazonamientoCuantitativo >= 191 && prueba.puntajeRazonamientoCuantitativo <= 300}" th:text="'Nivel 4'"></span>
+                <span th:if="${prueba.puntajeRazonamientoCuantitativo >= 156 && prueba.puntajeRazonamientoCuantitativo <= 190}" th:text="'Nivel 3'"></span>
+                <span th:if="${prueba.puntajeRazonamientoCuantitativo >= 126 && prueba.puntajeRazonamientoCuantitativo <= 155}" th:text="'Nivel 2'"></span>
+                <span th:if="${prueba.puntajeRazonamientoCuantitativo < 125}" th:text="'Nivel 1'"></span>
+
+            </div>
+            <br>
+            <div class="nivel">LECTURA CRITICA<br>
+                <span th:if="${prueba.puntajeLecturaEscrita >= 191 && prueba.puntajeLecturaEscrita <= 300}" th:text="'Nivel 4'"></span>
+                <span th:if="${prueba.puntajeLecturaEscrita >= 156 && prueba.puntajeLecturaEscrita <= 190}" th:text="'Nivel 3'"></span>
+                <span th:if="${prueba.puntajeLecturaEscrita >= 126 && prueba.puntajeLecturaEscrita <= 155}" th:text="'Nivel 2'"></span>
+                <span th:if="${prueba.puntajeLecturaEscrita < 125}" th:text="'Nivel 1'"></span>
+
+            </div>
+            <br>
+            <div class="nivel">COMPETENCIAS CIUDADANAS<br>
+                <span th:if="${prueba.puntajeCompetenciasCiudadanas >= 191 && prueba.puntajeCompetenciasCiudadanas <= 300}" th:text="'Nivel 4'"></span>
+                <span th:if="${prueba.puntajeCompetenciasCiudadanas >= 156 && prueba.puntajeCompetenciasCiudadanas <= 190}" th:text="'Nivel 3'"></span>
+                <span th:if="${prueba.puntajeCompetenciasCiudadanas >= 126 && prueba.puntajeCompetenciasCiudadanas <= 155}" th:text="'Nivel 2'"></span>
+                <span th:if="${prueba.puntajeCompetenciasCiudadanas < 125}" th:text="'Nivel 1'"></span>
+
+            </div>
+            <br>
+            <div class="nivel">FORMULACION DE PROYECTOS<br>
+                <span th:if="${prueba.puntajeFPI>= 191 && prueba.puntajeFPI <= 300}" th:text="'Nivel 4'"></span>
+                <span th:if="${prueba.puntajeFPI >= 156 && prueba.puntajeFPI <= 190}" th:text="'Nivel 3'"></span>
+                <span th:if="${prueba.puntajeFPI >= 126 && prueba.puntajeFPI <= 155}" th:text="'Nivel 2'"></span>
+                <span th:if="${prueba.puntajeFPI < 125}" th:text="'Nivel 1'"></span>
+            </div>
+            <br>
+            <div class="nivel">PENSAMIENTO CIENTIFICO<br>
+                <span th:if="${prueba.puntajePCME >= 191 && prueba.puntajePCME <= 300}" th:text="'Nivel 4'"></span>
+                <span th:if="${prueba.puntajePCME >= 156 && prueba.puntajePCME <= 190}" th:text="'Nivel 3'"></span>
+                <span th:if="${prueba.puntajePCME >= 126 && prueba.puntajePCME <= 155}" th:text="'Nivel 2'"></span>
+                <span th:if="${prueba.puntajePCME < 125}" th:text="'Nivel 1'"></span>
+            </div>
+            <br>
+            <div class="nivel">DISEÑO DE SOFTWARE<br>
+                <span th:if="${prueba.puntajeDDS >= 191 && prueba.puntajeDDS <= 300}" th:text="'Nivel 4'"></span>
+                <span th:if="${prueba.puntajeDDS >= 156 && prueba.puntajeDDS <= 190}" th:text="'Nivel 3'"></span>
+                <span th:if="${prueba.puntajeDDS >= 126 && prueba.puntajeDDS <= 155}" th:text="'Nivel 2'"></span>
+                <span th:if="${prueba.puntajeDDS < 125}" th:text="'Nivel 1'"></span>
+            </div>
+            <br>
+            <div class="nivel">INGLES<br>
+                <span th:if="${prueba.puntajeIngles >= 191 && prueba.puntajeIngles <= 300}" th:text="'Nivel 4'"></span>
+                <span th:if="${prueba.puntajeIngles >= 156 && prueba.puntajeIngles <= 190}" th:text="'Nivel 3'"></span>
+                <span th:if="${prueba.puntajeIngles >= 126 && prueba.puntajeIngles <= 155}" th:text="'Nivel 2'"></span>
+                <span th:if="${prueba.puntajeIngles < 125}" th:text="'Nivel 1'"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
