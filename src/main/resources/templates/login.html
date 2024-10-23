@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Estilos globales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Centrado de la página */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://image-0.uhdpaper.com/wallpaper/blue-sky-scenery-landscape-pixel-art-digital-art-hd-wallpaper-uhdpaper.com-763@0@i.jpg'); /* Imagen de fondo */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Estilos del formulario */
+        .form {
+            --input-focus: #ffbe40;
+            --font-color: #ffffff;
+            --bg-color: #b3cc57;
+            --button-bg: #ecf081;
+            --button-hover-bg: #ab3e5b;
+            --button-text: #323232;
+            padding: 40px;
+            background: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .title {
+            color: var(--font-color);
+            font-weight: 900;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .title span {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+            font-size: 16px;
+        }
+
+        .input {
+            width: 300px;
+            height: 50px;
+            border-radius: 5px;
+            border: none;
+            background-color: #ecf081;
+            box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            padding: 0 15px;
+            outline: none;
+            color: #323232;
+        }
+
+        .input::placeholder {
+            color: rgba(50, 50, 50, 0.7);
+        }
+
+        .input:focus {
+            border: 2px solid var(--input-focus);
+            box-shadow: 0px 0px 10px rgba(255, 190, 64, 0.5);
+        }
+
+        .button-confirm {
+            width: 140px;
+            height: 45px;
+            border-radius: 30px;
+            border: none;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-confirm:hover {
+            background-color: var(--button-hover-bg);
+            color: white;
+        }
+
+        .button-confirm:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+<form class="form" th:action="@{/inicio-sesion}" th:object="${coordinador}" method="post">
+    <div class="title">Bienvenido Coordinador,<br><span>Ingrese sus datos para continuar</span></div>
+    <input class="input" name="email" placeholder="Usuario" type="text" th:field="*{usuario}">
+    <input class="input" name="password" placeholder="Contraseña" type="password" th:field="*{contra}">
+    <button class="button-confirm">Ingresar</button>
+</form>
+
+</body>
+</html>
+
